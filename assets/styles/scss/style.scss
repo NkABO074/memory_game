@@ -1,0 +1,76 @@
+@import "partials/_variables.scss";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background-color: $GrandBlue;
+  display: flex;
+}
+
+.hide {
+  opacity: 0.5;
+  transition: opacity 4s ease-in-out;
+}
+
+.game_score {
+  color: $light;
+  font-family: $primaryFont;
+  margin: 5px;
+  padding: 10px;
+  background-color: rgba($light, 0.3);
+  font-size: 26px;
+  display:inline;
+  border-radius: 0 10px 10px 0;
+}
+
+.memory_game {
+  margin: auto;
+  //border: 2px solid $citronGreen;
+  height: 640px;
+  width: 640px;
+  display: flex;
+  flex-wrap: wrap;
+  perspective: 1000px;
+
+  .memory_card {
+    width: calc(25% - 0.1px);
+    height: 33%;
+    //margin: 5px;
+    position: relative;
+    border: 2px solid $patheticWhiteBlue;
+
+    //3D effect
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+
+    &:active {
+      transform: scale(0.97);
+      transition: transform 0.2s;
+    }
+
+    &.flip {
+      transform: rotateY(180deg);
+    }
+
+    .front_face,
+    .back_face {
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      position: absolute;
+      //border: 2px solid $love;
+      background-color: $weakBlue;
+      backface-visibility: hidden;
+    }
+
+    .front_face {
+      transform: rotateY(180deg);
+    }
+  }
+}
